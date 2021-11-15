@@ -1,0 +1,2055 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" >
+	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+    <title>Hello, world!</title>
+	
+  </head>
+  <body>
+    
+<form action="" style="max-width:500px;margin:auto">
+  <h2>International Telephone Input Flags and Dial Codes with search option</h2>
+  <div class="input-container">
+<select class="countrydrowpdown js-example-basic-single">	
+</select>
+   <!-- <input class="input-field" type="text" placeholder="Username" name="usrnm">-->
+ </div>
+ 
+ <h1 class="countrycode"></h1>
+</form>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" ></script>
+	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+	
+<script>
+ let countryFlag = [
+    {
+        "name": "Afghanistan",
+        "flag": "🇦🇫",
+        "code": "AF",
+        "dial_code": "+93",
+        "name_ar": "أفغانستان",
+        "flag_1x1": "flags/1x1/af.svg",
+        "flag_4x3": "flags/4x3/af.svg"
+    },
+    {
+        "name": "Albania",
+        "flag": "🇦🇱",
+        "code": "AL",
+        "dial_code": "+355",
+        "name_ar": "ألبانيا",
+        "flag_1x1": "flags/1x1/al.svg",
+        "flag_4x3": "flags/4x3/al.svg"
+    },
+    {
+        "name": "Algeria",
+        "flag": "🇩🇿",
+        "code": "DZ",
+        "dial_code": "+213",
+        "name_ar": "الجزائر",
+        "flag_1x1": "flags/1x1/dz.svg",
+        "flag_4x3": "flags/4x3/dz.svg"
+    },
+    {
+        "name": "American Samoa",
+        "flag": "🇦🇸",
+        "code": "AS",
+        "dial_code": "+1684",
+        "name_ar": "ساموا الأمريكية",
+        "flag_1x1": "flags/1x1/as.svg",
+        "flag_4x3": "flags/4x3/as.svg"
+    },
+    {
+        "name": "Andorra",
+        "flag": "🇦🇩",
+        "code": "AD",
+        "dial_code": "+376",
+        "name_ar": "أندورا",
+        "flag_1x1": "flags/1x1/ad.svg",
+        "flag_4x3": "flags/4x3/ad.svg"
+    },
+    {
+        "name": "Angola",
+        "flag": "🇦🇴",
+        "code": "AO",
+        "dial_code": "+244",
+        "name_ar": "أنجولا",
+        "flag_1x1": "flags/1x1/ao.svg",
+        "flag_4x3": "flags/4x3/ao.svg"
+    },
+    {
+        "name": "Anguilla",
+        "flag": "🇦🇮",
+        "code": "AI",
+        "dial_code": "+1264",
+        "name_ar": "أنجويلا",
+        "flag_1x1": "flags/1x1/ai.svg",
+        "flag_4x3": "flags/4x3/ai.svg"
+    },
+    {
+        "name": "Antarctica",
+        "flag": "🇦🇶",
+        "code": "AQ",
+        "dial_code": "+672",
+        "name_ar": "القطب الجنوبي",
+        "flag_1x1": "flags/1x1/aq.svg",
+        "flag_4x3": "flags/4x3/aq.svg"
+    },
+    {
+        "name": "Antigua and Barbuda",
+        "flag": "🇦🇬",
+        "code": "AG",
+        "dial_code": "+1268",
+        "name_ar": "أنتيجوا وبربودا",
+        "flag_1x1": "flags/1x1/ag.svg",
+        "flag_4x3": "flags/4x3/ag.svg"
+    },
+    {
+        "name": "Argentina",
+        "flag": "🇦🇷",
+        "code": "AR",
+        "dial_code": "+54",
+        "name_ar": "الأرجنتين",
+        "flag_1x1": "flags/1x1/ar.svg",
+        "flag_4x3": "flags/4x3/ar.svg"
+    },
+    {
+        "name": "Armenia",
+        "flag": "🇦🇲",
+        "code": "AM",
+        "dial_code": "+374",
+        "name_ar": "أرمينيا",
+        "flag_1x1": "flags/1x1/am.svg",
+        "flag_4x3": "flags/4x3/am.svg"
+    },
+    {
+        "name": "Aruba",
+        "flag": "🇦🇼",
+        "code": "AW",
+        "dial_code": "+297",
+        "name_ar": "آروبا",
+        "flag_1x1": "flags/1x1/aw.svg",
+        "flag_4x3": "flags/4x3/aw.svg"
+    },
+    {
+        "name": "Australia",
+        "flag": "🇦🇺",
+        "code": "AU",
+        "dial_code": "+61",
+        "name_ar": "أستراليا",
+        "flag_1x1": "flags/1x1/au.svg",
+        "flag_4x3": "flags/4x3/au.svg"
+    },
+    {
+        "name": "Austria",
+        "flag": "🇦🇹",
+        "code": "AT",
+        "dial_code": "+43",
+        "name_ar": "النمسا",
+        "flag_1x1": "flags/1x1/at.svg",
+        "flag_4x3": "flags/4x3/at.svg"
+    },
+    {
+        "name": "Azerbaijan",
+        "flag": "🇦🇿",
+        "code": "AZ",
+        "dial_code": "+994",
+        "name_ar": "أذربيجان",
+        "flag_1x1": "flags/1x1/az.svg",
+        "flag_4x3": "flags/4x3/az.svg"
+    },
+    {
+        "name": "Bahamas",
+        "flag": "🇧🇸",
+        "code": "BS",
+        "dial_code": "+1242",
+        "name_ar": "الباهاما",
+        "flag_1x1": "flags/1x1/bs.svg",
+        "flag_4x3": "flags/4x3/bs.svg"
+    },
+    {
+        "name": "Bahrain",
+        "flag": "🇧🇭",
+        "code": "BH",
+        "dial_code": "+973",
+        "name_ar": "البحرين",
+        "flag_1x1": "flags/1x1/bh.svg",
+        "flag_4x3": "flags/4x3/bh.svg"
+    },
+    {
+        "name": "Bangladesh",
+        "flag": "🇧🇩",
+        "code": "BD",
+        "dial_code": "+880",
+        "name_ar": "بنجلاديش",
+        "flag_1x1": "flags/1x1/bd.svg",
+        "flag_4x3": "flags/4x3/bd.svg"
+    },
+    {
+        "name": "Barbados",
+        "flag": "🇧🇧",
+        "code": "BB",
+        "dial_code": "+1246",
+        "name_ar": "بربادوس",
+        "flag_1x1": "flags/1x1/bb.svg",
+        "flag_4x3": "flags/4x3/bb.svg"
+    },
+    {
+        "name": "Belarus",
+        "flag": "🇧🇾",
+        "code": "BY",
+        "dial_code": "+375",
+        "name_ar": "روسيا البيضاء",
+        "flag_1x1": "flags/1x1/by.svg",
+        "flag_4x3": "flags/4x3/by.svg"
+    },
+    {
+        "name": "Belgium",
+        "flag": "🇧🇪",
+        "code": "BE",
+        "dial_code": "+32",
+        "name_ar": "بلجيكا",
+        "flag_1x1": "flags/1x1/be.svg",
+        "flag_4x3": "flags/4x3/be.svg"
+    },
+    {
+        "name": "Belize",
+        "flag": "🇧🇿",
+        "code": "BZ",
+        "dial_code": "+501",
+        "name_ar": "بليز",
+        "flag_1x1": "flags/1x1/bz.svg",
+        "flag_4x3": "flags/4x3/bz.svg"
+    },
+    {
+        "name": "Benin",
+        "flag": "🇧🇯",
+        "code": "BJ",
+        "dial_code": "+229",
+        "name_ar": "بنين",
+        "flag_1x1": "flags/1x1/bj.svg",
+        "flag_4x3": "flags/4x3/bj.svg"
+    },
+    {
+        "name": "Bermuda",
+        "flag": "🇧🇲",
+        "code": "BM",
+        "dial_code": "+1441",
+        "name_ar": "برمودا",
+        "flag_1x1": "flags/1x1/bm.svg",
+        "flag_4x3": "flags/4x3/bm.svg"
+    },
+    {
+        "name": "Bhutan",
+        "flag": "🇧🇹",
+        "code": "BT",
+        "dial_code": "+975",
+        "name_ar": "بوتان",
+        "flag_1x1": "flags/1x1/bt.svg",
+        "flag_4x3": "flags/4x3/bt.svg"
+    },
+    {
+        "name": "Bosnia and Herzegovina",
+        "flag": "🇧🇦",
+        "code": "BA",
+        "dial_code": "+387",
+        "name_ar": "البوسنة والهرسك",
+        "flag_1x1": "flags/1x1/ba.svg",
+        "flag_4x3": "flags/4x3/ba.svg"
+    },
+    {
+        "name": "Botswana",
+        "flag": "🇧🇼",
+        "code": "BW",
+        "dial_code": "+267",
+        "name_ar": "بتسوانا",
+        "flag_1x1": "flags/1x1/bw.svg",
+        "flag_4x3": "flags/4x3/bw.svg"
+    },
+    {
+        "name": "Bouvet Island",
+        "flag": "🇧🇻",
+        "code": "BV",
+        "dial_code": "+47",
+        "name_ar": "جزيرة بوفيه",
+        "flag_1x1": "flags/1x1/bv.svg",
+        "flag_4x3": "flags/4x3/bv.svg"
+    },
+    {
+        "name": "Brazil",
+        "flag": "🇧🇷",
+        "code": "BR",
+        "dial_code": "+55",
+        "name_ar": "البرازيل",
+        "flag_1x1": "flags/1x1/br.svg",
+        "flag_4x3": "flags/4x3/br.svg"
+    },
+    {
+        "name": "British Indian Ocean Territory",
+        "flag": "🇮🇴",
+        "code": "IO",
+        "dial_code": "+246",
+        "name_ar": "المحيط الهندي البريطاني",
+        "flag_1x1": "flags/1x1/io.svg",
+        "flag_4x3": "flags/4x3/io.svg"
+    },
+    {
+        "name": "Brunei Darussalam",
+        "flag": "🇧🇳",
+        "code": "BN",
+        "dial_code": "+673",
+        "name_ar": "بروناي",
+        "flag_1x1": "flags/1x1/bn.svg",
+        "flag_4x3": "flags/4x3/bn.svg"
+    },
+    {
+        "name": "Bulgaria",
+        "flag": "🇧🇬",
+        "code": "BG",
+        "dial_code": "+359",
+        "name_ar": "بلغاريا",
+        "flag_1x1": "flags/1x1/bg.svg",
+        "flag_4x3": "flags/4x3/bg.svg"
+    },
+    {
+        "name": "Burkina Faso",
+        "flag": "🇧🇫",
+        "code": "BF",
+        "dial_code": "+226",
+        "name_ar": "بوركينا فاسو",
+        "flag_1x1": "flags/1x1/bf.svg",
+        "flag_4x3": "flags/4x3/bf.svg"
+    },
+    {
+        "name": "Burundi",
+        "flag": "🇧🇮",
+        "code": "BI",
+        "dial_code": "+257",
+        "name_ar": "بوروندي",
+        "flag_1x1": "flags/1x1/bi.svg",
+        "flag_4x3": "flags/4x3/bi.svg"
+    },
+    {
+        "name": "Cambodia",
+        "flag": "🇰🇭",
+        "code": "KH",
+        "dial_code": "+855",
+        "name_ar": "كمبوديا",
+        "flag_1x1": "flags/1x1/kh.svg",
+        "flag_4x3": "flags/4x3/kh.svg"
+    },
+    {
+        "name": "Cameroon",
+        "flag": "🇨🇲",
+        "code": "CM",
+        "dial_code": "+237",
+        "name_ar": "الكاميرون",
+        "flag_1x1": "flags/1x1/cm.svg",
+        "flag_4x3": "flags/4x3/cm.svg"
+    },
+    {
+        "name": "Canada",
+        "flag": "🇨🇦",
+        "code": "CA",
+        "dial_code": "+1",
+        "name_ar": "كندا",
+        "flag_1x1": "flags/1x1/ca.svg",
+        "flag_4x3": "flags/4x3/ca.svg"
+    },
+    {
+        "name": "Cayman Islands",
+        "flag": "🇰🇾",
+        "code": "KY",
+        "dial_code": "+345",
+        "name_ar": "جزر الكايمن",
+        "flag_1x1": "flags/1x1/ky.svg",
+        "flag_4x3": "flags/4x3/ky.svg"
+    },
+    {
+        "name": "Central African Republic",
+        "flag": "🇨🇫",
+        "code": "CF",
+        "dial_code": "+236",
+        "name_ar": "جمهورية افريقيا الوسطى",
+        "flag_1x1": "flags/1x1/cf.svg",
+        "flag_4x3": "flags/4x3/cf.svg"
+    },
+    {
+        "name": "Chad",
+        "flag": "🇹🇩",
+        "code": "TD",
+        "dial_code": "+235",
+        "name_ar": "تشاد",
+        "flag_1x1": "flags/1x1/td.svg",
+        "flag_4x3": "flags/4x3/td.svg"
+    },
+    {
+        "name": "Chile",
+        "flag": "🇨🇱",
+        "code": "CL",
+        "dial_code": "+56",
+        "name_ar": "شيلي",
+        "flag_1x1": "flags/1x1/cl.svg",
+        "flag_4x3": "flags/4x3/cl.svg"
+    },
+    {
+        "name": "China",
+        "flag": "🇨🇳",
+        "code": "CN",
+        "dial_code": "+86",
+        "name_ar": "الصين",
+        "flag_1x1": "flags/1x1/cn.svg",
+        "flag_4x3": "flags/4x3/cn.svg"
+    },
+    {
+        "name": "Christmas Island",
+        "flag": "🇨🇽",
+        "code": "CX",
+        "dial_code": "+61",
+        "name_ar": "جزيرة الكريسماس",
+        "flag_1x1": "flags/1x1/cx.svg",
+        "flag_4x3": "flags/4x3/cx.svg"
+    },
+    {
+        "name": "Cocos (Keeling) Islands",
+        "flag": "🇨🇨",
+        "code": "CC",
+        "dial_code": "+61",
+        "name_ar": "جزر كوكوس",
+        "flag_1x1": "flags/1x1/cc.svg",
+        "flag_4x3": "flags/4x3/cc.svg"
+    },
+    {
+        "name": "Colombia",
+        "flag": "🇨🇴",
+        "code": "CO",
+        "dial_code": "+57",
+        "name_ar": "كولومبيا",
+        "flag_1x1": "flags/1x1/co.svg",
+        "flag_4x3": "flags/4x3/co.svg"
+    },
+    {
+        "name": "Comoros",
+        "flag": "🇰🇲",
+        "code": "KM",
+        "dial_code": "+269",
+        "name_ar": "جزر القمر",
+        "flag_1x1": "flags/1x1/km.svg",
+        "flag_4x3": "flags/4x3/km.svg"
+    },
+    {
+        "name": "Cook Islands",
+        "flag": "🇨🇰",
+        "code": "CK",
+        "dial_code": "+682",
+        "name_ar": "جزر كوك",
+        "flag_1x1": "flags/1x1/ck.svg",
+        "flag_4x3": "flags/4x3/ck.svg"
+    },
+    {
+        "name": "Costa Rica",
+        "flag": "🇨🇷",
+        "code": "CR",
+        "dial_code": "+506",
+        "name_ar": "كوستاريكا",
+        "flag_1x1": "flags/1x1/cr.svg",
+        "flag_4x3": "flags/4x3/cr.svg"
+    },
+    {
+        "name": "Croatia",
+        "flag": "🇭🇷",
+        "code": "HR",
+        "dial_code": "+385",
+        "name_ar": "كرواتيا",
+        "flag_1x1": "flags/1x1/hr.svg",
+        "flag_4x3": "flags/4x3/hr.svg"
+    },
+    {
+        "name": "Cuba",
+        "flag": "🇨🇺",
+        "code": "CU",
+        "dial_code": "+53",
+        "name_ar": "كوبا",
+        "flag_1x1": "flags/1x1/cu.svg",
+        "flag_4x3": "flags/4x3/cu.svg"
+    },
+    {
+        "name": "Cyprus",
+        "flag": "🇨🇾",
+        "code": "CY",
+        "dial_code": "+357",
+        "name_ar": "قبرص",
+        "flag_1x1": "flags/1x1/cy.svg",
+        "flag_4x3": "flags/4x3/cy.svg"
+    },
+    {
+        "name": "Czech Republic",
+        "flag": "🇨🇿",
+        "code": "CZ",
+        "dial_code": "+420",
+        "name_ar": "جمهورية التشيك",
+        "flag_1x1": "flags/1x1/cz.svg",
+        "flag_4x3": "flags/4x3/cz.svg"
+    },
+    {
+        "name": "Denmark",
+        "flag": "🇩🇰",
+        "code": "DK",
+        "dial_code": "+45",
+        "name_ar": "الدانمرك",
+        "flag_1x1": "flags/1x1/dk.svg",
+        "flag_4x3": "flags/4x3/dk.svg"
+    },
+    {
+        "name": "Djibouti",
+        "flag": "🇩🇯",
+        "code": "DJ",
+        "dial_code": "+253",
+        "name_ar": "جيبوتي",
+        "flag_1x1": "flags/1x1/dj.svg",
+        "flag_4x3": "flags/4x3/dj.svg"
+    },
+    {
+        "name": "Dominica",
+        "flag": "🇩🇲",
+        "code": "DM",
+        "dial_code": "+1767",
+        "name_ar": "دومينيكا",
+        "flag_1x1": "flags/1x1/dm.svg",
+        "flag_4x3": "flags/4x3/dm.svg"
+    },
+    {
+        "name": "Dominican Republic",
+        "flag": "🇩🇴",
+        "code": "DO",
+        "dial_code": "+1849",
+        "name_ar": "جمهورية الدومينيك",
+        "flag_1x1": "flags/1x1/do.svg",
+        "flag_4x3": "flags/4x3/do.svg"
+    },
+    {
+        "name": "Ecuador",
+        "flag": "🇪🇨",
+        "code": "EC",
+        "dial_code": "+593",
+        "name_ar": "الاكوادور",
+        "flag_1x1": "flags/1x1/ec.svg",
+        "flag_4x3": "flags/4x3/ec.svg"
+    },
+    {
+        "name": "Egypt",
+        "flag": "🇪🇬",
+        "code": "EG",
+        "dial_code": "+20",
+        "name_ar": "مصر",
+        "flag_1x1": "flags/1x1/eg.svg",
+        "flag_4x3": "flags/4x3/eg.svg"
+    },
+    {
+        "name": "El Salvador",
+        "flag": "🇸🇻",
+        "code": "SV",
+        "dial_code": "+503",
+        "name_ar": "السلفادور",
+        "flag_1x1": "flags/1x1/sv.svg",
+        "flag_4x3": "flags/4x3/sv.svg"
+    },
+    {
+        "name": "Equatorial Guinea",
+        "flag": "🇬🇶",
+        "code": "GQ",
+        "dial_code": "+240",
+        "name_ar": "غينيا الاستوائية",
+        "flag_1x1": "flags/1x1/gq.svg",
+        "flag_4x3": "flags/4x3/gq.svg"
+    },
+    {
+        "name": "Eritrea",
+        "flag": "🇪🇷",
+        "code": "ER",
+        "dial_code": "+291",
+        "name_ar": "اريتريا",
+        "flag_1x1": "flags/1x1/er.svg",
+        "flag_4x3": "flags/4x3/er.svg"
+    },
+    {
+        "name": "Estonia",
+        "flag": "🇪🇪",
+        "code": "EE",
+        "dial_code": "+372",
+        "name_ar": "استونيا",
+        "flag_1x1": "flags/1x1/ee.svg",
+        "flag_4x3": "flags/4x3/ee.svg"
+    },
+    {
+        "name": "Ethiopia",
+        "flag": "🇪🇹",
+        "code": "ET",
+        "dial_code": "+251",
+        "name_ar": "اثيوبيا",
+        "flag_1x1": "flags/1x1/et.svg",
+        "flag_4x3": "flags/4x3/et.svg"
+    },
+    {
+        "name": "Faroe Islands",
+        "flag": "🇫🇴",
+        "code": "FO",
+        "dial_code": "+298",
+        "name_ar": "جزر فارو",
+        "flag_1x1": "flags/1x1/fo.svg",
+        "flag_4x3": "flags/4x3/fo.svg"
+    },
+    {
+        "name": "Fiji",
+        "flag": "🇫🇯",
+        "code": "FJ",
+        "dial_code": "+679",
+        "name_ar": "فيجي",
+        "flag_1x1": "flags/1x1/fj.svg",
+        "flag_4x3": "flags/4x3/fj.svg"
+    },
+    {
+        "name": "Finland",
+        "flag": "🇫🇮",
+        "code": "FI",
+        "dial_code": "+358",
+        "name_ar": "فنلندا",
+        "flag_1x1": "flags/1x1/fi.svg",
+        "flag_4x3": "flags/4x3/fi.svg"
+    },
+    {
+        "name": "France",
+        "flag": "🇫🇷",
+        "code": "FR",
+        "dial_code": "+33",
+        "name_ar": "فرنسا",
+        "flag_1x1": "flags/1x1/fr.svg",
+        "flag_4x3": "flags/4x3/fr.svg"
+    },
+    {
+        "name": "French Guiana",
+        "flag": "🇬🇫",
+        "code": "GF",
+        "dial_code": "+594",
+        "name_ar": "غويانا",
+        "flag_1x1": "flags/1x1/gf.svg",
+        "flag_4x3": "flags/4x3/gf.svg"
+    },
+    {
+        "name": "French Polynesia",
+        "flag": "🇵🇫",
+        "code": "PF",
+        "dial_code": "+689",
+        "name_ar": "بولينيزيا الفرنسية",
+        "flag_1x1": "flags/1x1/pf.svg",
+        "flag_4x3": "flags/4x3/pf.svg"
+    },
+    {
+        "name": "French Southern Territories",
+        "flag": "🇹🇫",
+        "code": "TF",
+        "dial_code": "+262",
+        "name_ar": "المقاطعات الجنوبية الفرنسية",
+        "flag_1x1": "flags/1x1/tf.svg",
+        "flag_4x3": "flags/4x3/tf.svg"
+    },
+    {
+        "name": "Gabon",
+        "flag": "🇬🇦",
+        "code": "GA",
+        "dial_code": "+241",
+        "name_ar": "الجابون",
+        "flag_1x1": "flags/1x1/ga.svg",
+        "flag_4x3": "flags/4x3/ga.svg"
+    },
+    {
+        "name": "Gambia",
+        "flag": "🇬🇲",
+        "code": "GM",
+        "dial_code": "+220",
+        "name_ar": "غامبيا",
+        "flag_1x1": "flags/1x1/gm.svg",
+        "flag_4x3": "flags/4x3/gm.svg"
+    },
+    {
+        "name": "Georgia",
+        "flag": "🇬🇪",
+        "code": "GE",
+        "dial_code": "+995",
+        "name_ar": "جورجيا",
+        "flag_1x1": "flags/1x1/ge.svg",
+        "flag_4x3": "flags/4x3/ge.svg"
+    },
+    {
+        "name": "Germany",
+        "flag": "🇩🇪",
+        "code": "DE",
+        "dial_code": "+49",
+        "name_ar": "ألمانيا",
+        "flag_1x1": "flags/1x1/de.svg",
+        "flag_4x3": "flags/4x3/de.svg"
+    },
+    {
+        "name": "Ghana",
+        "flag": "🇬🇭",
+        "code": "GH",
+        "dial_code": "+233",
+        "name_ar": "غانا",
+        "flag_1x1": "flags/1x1/gh.svg",
+        "flag_4x3": "flags/4x3/gh.svg"
+    },
+    {
+        "name": "Gibraltar",
+        "flag": "🇬🇮",
+        "code": "GI",
+        "dial_code": "+350",
+        "name_ar": "جبل طارق",
+        "flag_1x1": "flags/1x1/gi.svg",
+        "flag_4x3": "flags/4x3/gi.svg"
+    },
+    {
+        "name": "Greece",
+        "flag": "🇬🇷",
+        "code": "GR",
+        "dial_code": "+30",
+        "name_ar": "اليونان",
+        "flag_1x1": "flags/1x1/gr.svg",
+        "flag_4x3": "flags/4x3/gr.svg"
+    },
+    {
+        "name": "Greenland",
+        "flag": "🇬🇱",
+        "code": "GL",
+        "dial_code": "+299",
+        "name_ar": "جرينلاند",
+        "flag_1x1": "flags/1x1/gl.svg",
+        "flag_4x3": "flags/4x3/gl.svg"
+    },
+    {
+        "name": "Grenada",
+        "flag": "🇬🇩",
+        "code": "GD",
+        "dial_code": "+1473",
+        "name_ar": "جرينادا",
+        "flag_1x1": "flags/1x1/gd.svg",
+        "flag_4x3": "flags/4x3/gd.svg"
+    },
+    {
+        "name": "Guadeloupe",
+        "flag": "🇬🇵",
+        "code": "GP",
+        "dial_code": "+590",
+        "name_ar": "جوادلوب",
+        "flag_1x1": "flags/1x1/gp.svg",
+        "flag_4x3": "flags/4x3/gp.svg"
+    },
+    {
+        "name": "Guam",
+        "flag": "🇬🇺",
+        "code": "GU",
+        "dial_code": "+1671",
+        "name_ar": "جوام",
+        "flag_1x1": "flags/1x1/gu.svg",
+        "flag_4x3": "flags/4x3/gu.svg"
+    },
+    {
+        "name": "Guatemala",
+        "flag": "🇬🇹",
+        "code": "GT",
+        "dial_code": "+502",
+        "name_ar": "جواتيمالا",
+        "flag_1x1": "flags/1x1/gt.svg",
+        "flag_4x3": "flags/4x3/gt.svg"
+    },
+    {
+        "name": "Guernsey",
+        "flag": "🇬🇬",
+        "code": "GG",
+        "dial_code": "+44",
+        "name_ar": "غيرنزي",
+        "flag_1x1": "flags/1x1/gg.svg",
+        "flag_4x3": "flags/4x3/gg.svg"
+    },
+    {
+        "name": "Guinea",
+        "flag": "🇬🇳",
+        "code": "GN",
+        "dial_code": "+224",
+        "name_ar": "غينيا",
+        "flag_1x1": "flags/1x1/gn.svg",
+        "flag_4x3": "flags/4x3/gn.svg"
+    },
+    {
+        "name": "Guinea-Bissau",
+        "flag": "🇬🇼",
+        "code": "GW",
+        "dial_code": "+245",
+        "name_ar": "غينيا بيساو",
+        "flag_1x1": "flags/1x1/gw.svg",
+        "flag_4x3": "flags/4x3/gw.svg"
+    },
+    {
+        "name": "Guyana",
+        "flag": "🇬🇾",
+        "code": "GY",
+        "dial_code": "+592",
+        "name_ar": "غيانا",
+        "flag_1x1": "flags/1x1/gy.svg",
+        "flag_4x3": "flags/4x3/gy.svg"
+    },
+    {
+        "name": "Haiti",
+        "flag": "🇭🇹",
+        "code": "HT",
+        "dial_code": "+509",
+        "name_ar": "هايتي",
+        "flag_1x1": "flags/1x1/ht.svg",
+        "flag_4x3": "flags/4x3/ht.svg"
+    },
+    {
+        "name": "Honduras",
+        "flag": "🇭🇳",
+        "code": "HN",
+        "dial_code": "+504",
+        "name_ar": "هندوراس",
+        "flag_1x1": "flags/1x1/hn.svg",
+        "flag_4x3": "flags/4x3/hn.svg"
+    },
+    {
+        "name": "Hong Kong",
+        "flag": "🇭🇰",
+        "code": "HK",
+        "dial_code": "+852",
+        "name_ar": "هونج كونج الصينية",
+        "flag_1x1": "flags/1x1/hk.svg",
+        "flag_4x3": "flags/4x3/hk.svg"
+    },
+    {
+        "name": "Hungary",
+        "flag": "🇭🇺",
+        "code": "HU",
+        "dial_code": "+36",
+        "name_ar": "المجر",
+        "flag_1x1": "flags/1x1/hu.svg",
+        "flag_4x3": "flags/4x3/hu.svg"
+    },
+    {
+        "name": "Iceland",
+        "flag": "🇮🇸",
+        "code": "IS",
+        "dial_code": "+354",
+        "name_ar": "أيسلندا",
+        "flag_1x1": "flags/1x1/is.svg",
+        "flag_4x3": "flags/4x3/is.svg"
+    },
+    {
+        "name": "India",
+        "flag": "🇮🇳",
+        "code": "IN",
+        "dial_code": "+91",
+        "name_ar": "الهند",
+        "flag_1x1": "flags/1x1/in.svg",
+        "flag_4x3": "flags/4x3/in.svg"
+    },
+    {
+        "name": "Indonesia",
+        "flag": "🇮🇩",
+        "code": "ID",
+        "dial_code": "+62",
+        "name_ar": "اندونيسيا",
+        "flag_1x1": "flags/1x1/id.svg",
+        "flag_4x3": "flags/4x3/id.svg"
+    },
+    {
+        "name": "Iraq",
+        "flag": "🇮🇶",
+        "code": "IQ",
+        "dial_code": "+964",
+        "name_ar": "العراق",
+        "flag_1x1": "flags/1x1/iq.svg",
+        "flag_4x3": "flags/4x3/iq.svg"
+    },
+    {
+        "name": "Ireland",
+        "flag": "🇮🇪",
+        "code": "IE",
+        "dial_code": "+353",
+        "name_ar": "أيرلندا",
+        "flag_1x1": "flags/1x1/ie.svg",
+        "flag_4x3": "flags/4x3/ie.svg"
+    },
+    {
+        "name": "Isle of Man",
+        "flag": "🇮🇲",
+        "code": "IM",
+        "dial_code": "+44",
+        "name_ar": "جزيرة مان",
+        "flag_1x1": "flags/1x1/im.svg",
+        "flag_4x3": "flags/4x3/im.svg"
+    },
+    {
+        "name": "Israel",
+        "flag": "🇮🇱",
+        "code": "IL",
+        "dial_code": "+972",
+        "name_ar": "اسرائيل",
+        "flag_1x1": "flags/1x1/il.svg",
+        "flag_4x3": "flags/4x3/il.svg"
+    },
+    {
+        "name": "Italy",
+        "flag": "🇮🇹",
+        "code": "IT",
+        "dial_code": "+39",
+        "name_ar": "ايطاليا",
+        "flag_1x1": "flags/1x1/it.svg",
+        "flag_4x3": "flags/4x3/it.svg"
+    },
+    {
+        "name": "Jamaica",
+        "flag": "🇯🇲",
+        "code": "JM",
+        "dial_code": "+1876",
+        "name_ar": "جامايكا",
+        "flag_1x1": "flags/1x1/jm.svg",
+        "flag_4x3": "flags/4x3/jm.svg"
+    },
+    {
+        "name": "Japan",
+        "flag": "🇯🇵",
+        "code": "JP",
+        "dial_code": "+81",
+        "name_ar": "اليابان",
+        "flag_1x1": "flags/1x1/jp.svg",
+        "flag_4x3": "flags/4x3/jp.svg"
+    },
+    {
+        "name": "Jersey",
+        "flag": "🇯🇪",
+        "code": "JE",
+        "dial_code": "+44",
+        "name_ar": "جيرسي",
+        "flag_1x1": "flags/1x1/je.svg",
+        "flag_4x3": "flags/4x3/je.svg"
+    },
+    {
+        "name": "Jordan",
+        "flag": "🇯🇴",
+        "code": "JO",
+        "dial_code": "+962",
+        "name_ar": "الأردن",
+        "flag_1x1": "flags/1x1/jo.svg",
+        "flag_4x3": "flags/4x3/jo.svg"
+    },
+    {
+        "name": "Kazakhstan",
+        "flag": "🇰🇿",
+        "code": "KZ",
+        "dial_code": "+7",
+        "name_ar": "كازاخستان",
+        "flag_1x1": "flags/1x1/kz.svg",
+        "flag_4x3": "flags/4x3/kz.svg"
+    },
+    {
+        "name": "Kenya",
+        "flag": "🇰🇪",
+        "code": "KE",
+        "dial_code": "+254",
+        "name_ar": "كينيا",
+        "flag_1x1": "flags/1x1/ke.svg",
+        "flag_4x3": "flags/4x3/ke.svg"
+    },
+    {
+        "name": "Kiribati",
+        "flag": "🇰🇮",
+        "code": "KI",
+        "dial_code": "+686",
+        "name_ar": "كيريباتي",
+        "flag_1x1": "flags/1x1/ki.svg",
+        "flag_4x3": "flags/4x3/ki.svg"
+    },
+    {
+        "name": "Kosovo",
+        "flag": "🇽🇰",
+        "code": "XK",
+        "dial_code": "+383",
+        "name_ar": "كوسوفو",
+        "flag_1x1": "flags/1x1/xk.svg",
+        "flag_4x3": "flags/4x3/xk.svg"
+    },
+    {
+        "name": "Kuwait",
+        "flag": "🇰🇼",
+        "code": "KW",
+        "dial_code": "+965",
+        "name_ar": "الكويت",
+        "flag_1x1": "flags/1x1/kw.svg",
+        "flag_4x3": "flags/4x3/kw.svg"
+    },
+    {
+        "name": "Kyrgyzstan",
+        "flag": "🇰🇬",
+        "code": "KG",
+        "dial_code": "+996",
+        "name_ar": "قرغيزستان",
+        "flag_1x1": "flags/1x1/kg.svg",
+        "flag_4x3": "flags/4x3/kg.svg"
+    },
+    {
+        "name": "Laos",
+        "flag": "🇱🇦",
+        "code": "LA",
+        "dial_code": "+856",
+        "name_ar": "لاوس",
+        "flag_1x1": "flags/1x1/la.svg",
+        "flag_4x3": "flags/4x3/la.svg"
+    },
+    {
+        "name": "Latvia",
+        "flag": "🇱🇻",
+        "code": "LV",
+        "dial_code": "+371",
+        "name_ar": "لاتفيا",
+        "flag_1x1": "flags/1x1/lv.svg",
+        "flag_4x3": "flags/4x3/lv.svg"
+    },
+    {
+        "name": "Lebanon",
+        "flag": "🇱🇧",
+        "code": "LB",
+        "dial_code": "+961",
+        "name_ar": "لبنان",
+        "flag_1x1": "flags/1x1/lb.svg",
+        "flag_4x3": "flags/4x3/lb.svg"
+    },
+    {
+        "name": "Lesotho",
+        "flag": "🇱🇸",
+        "code": "LS",
+        "dial_code": "+266",
+        "name_ar": "ليسوتو",
+        "flag_1x1": "flags/1x1/ls.svg",
+        "flag_4x3": "flags/4x3/ls.svg"
+    },
+    {
+        "name": "Liberia",
+        "flag": "🇱🇷",
+        "code": "LR",
+        "dial_code": "+231",
+        "name_ar": "ليبيريا",
+        "flag_1x1": "flags/1x1/lr.svg",
+        "flag_4x3": "flags/4x3/lr.svg"
+    },
+    {
+        "name": "Liechtenstein",
+        "flag": "🇱🇮",
+        "code": "LI",
+        "dial_code": "+423",
+        "name_ar": "ليختنشتاين",
+        "flag_1x1": "flags/1x1/li.svg",
+        "flag_4x3": "flags/4x3/li.svg"
+    },
+    {
+        "name": "Lithuania",
+        "flag": "🇱🇹",
+        "code": "LT",
+        "dial_code": "+370",
+        "name_ar": "ليتوانيا",
+        "flag_1x1": "flags/1x1/lt.svg",
+        "flag_4x3": "flags/4x3/lt.svg"
+    },
+    {
+        "name": "Luxembourg",
+        "flag": "🇱🇺",
+        "code": "LU",
+        "dial_code": "+352",
+        "name_ar": "لوكسمبورج",
+        "flag_1x1": "flags/1x1/lu.svg",
+        "flag_4x3": "flags/4x3/lu.svg"
+    },
+    {
+        "name": "Madagascar",
+        "flag": "🇲🇬",
+        "code": "MG",
+        "dial_code": "+261",
+        "name_ar": "مدغشقر",
+        "flag_1x1": "flags/1x1/mg.svg",
+        "flag_4x3": "flags/4x3/mg.svg"
+    },
+    {
+        "name": "Malawi",
+        "flag": "🇲🇼",
+        "code": "MW",
+        "dial_code": "+265",
+        "name_ar": "ملاوي",
+        "flag_1x1": "flags/1x1/mw.svg",
+        "flag_4x3": "flags/4x3/mw.svg"
+    },
+    {
+        "name": "Malaysia",
+        "flag": "🇲🇾",
+        "code": "MY",
+        "dial_code": "+60",
+        "name_ar": "ماليزيا",
+        "flag_1x1": "flags/1x1/my.svg",
+        "flag_4x3": "flags/4x3/my.svg"
+    },
+    {
+        "name": "Maldives",
+        "flag": "🇲🇻",
+        "code": "MV",
+        "dial_code": "+960",
+        "name_ar": "جزر الملديف",
+        "flag_1x1": "flags/1x1/mv.svg",
+        "flag_4x3": "flags/4x3/mv.svg"
+    },
+    {
+        "name": "Mali",
+        "flag": "🇲🇱",
+        "code": "ML",
+        "dial_code": "+223",
+        "name_ar": "مالي",
+        "flag_1x1": "flags/1x1/ml.svg",
+        "flag_4x3": "flags/4x3/ml.svg"
+    },
+    {
+        "name": "Malta",
+        "flag": "🇲🇹",
+        "code": "MT",
+        "dial_code": "+356",
+        "name_ar": "مالطا",
+        "flag_1x1": "flags/1x1/mt.svg",
+        "flag_4x3": "flags/4x3/mt.svg"
+    },
+    {
+        "name": "Marshall Islands",
+        "flag": "🇲🇭",
+        "code": "MH",
+        "dial_code": "+692",
+        "name_ar": "جزر المارشال",
+        "flag_1x1": "flags/1x1/mh.svg",
+        "flag_4x3": "flags/4x3/mh.svg"
+    },
+    {
+        "name": "Martinique",
+        "flag": "🇲🇶",
+        "code": "MQ",
+        "dial_code": "+596",
+        "name_ar": "مارتينيك",
+        "flag_1x1": "flags/1x1/mq.svg",
+        "flag_4x3": "flags/4x3/mq.svg"
+    },
+    {
+        "name": "Mauritania",
+        "flag": "🇲🇷",
+        "code": "MR",
+        "dial_code": "+222",
+        "name_ar": "موريتانيا",
+        "flag_1x1": "flags/1x1/mr.svg",
+        "flag_4x3": "flags/4x3/mr.svg"
+    },
+    {
+        "name": "Mauritius",
+        "flag": "🇲🇺",
+        "code": "MU",
+        "dial_code": "+230",
+        "name_ar": "موريشيوس",
+        "flag_1x1": "flags/1x1/mu.svg",
+        "flag_4x3": "flags/4x3/mu.svg"
+    },
+    {
+        "name": "Mayotte",
+        "flag": "🇾🇹",
+        "code": "YT",
+        "dial_code": "+262",
+        "name_ar": "مايوت",
+        "flag_1x1": "flags/1x1/yt.svg",
+        "flag_4x3": "flags/4x3/yt.svg"
+    },
+    {
+        "name": "Mexico",
+        "flag": "🇲🇽",
+        "code": "MX",
+        "dial_code": "+52",
+        "name_ar": "المكسيك",
+        "flag_1x1": "flags/1x1/mx.svg",
+        "flag_4x3": "flags/4x3/mx.svg"
+    },
+    {
+        "name": "Moldova",
+        "flag": "🇲🇩",
+        "code": "MD",
+        "dial_code": "+373",
+        "name_ar": "مولدافيا",
+        "flag_1x1": "flags/1x1/md.svg",
+        "flag_4x3": "flags/4x3/md.svg"
+    },
+    {
+        "name": "Monaco",
+        "flag": "🇲🇨",
+        "code": "MC",
+        "dial_code": "+377",
+        "name_ar": "موناكو",
+        "flag_1x1": "flags/1x1/mc.svg",
+        "flag_4x3": "flags/4x3/mc.svg"
+    },
+    {
+        "name": "Mongolia",
+        "flag": "🇲🇳",
+        "code": "MN",
+        "dial_code": "+976",
+        "name_ar": "منغوليا",
+        "flag_1x1": "flags/1x1/mn.svg",
+        "flag_4x3": "flags/4x3/mn.svg"
+    },
+    {
+        "name": "Montenegro",
+        "flag": "🇲🇪",
+        "code": "ME",
+        "dial_code": "+382",
+        "name_ar": "الجبل الأسود",
+        "flag_1x1": "flags/1x1/me.svg",
+        "flag_4x3": "flags/4x3/me.svg"
+    },
+    {
+        "name": "Montserrat",
+        "flag": "🇲🇸",
+        "code": "MS",
+        "dial_code": "+1664",
+        "name_ar": "مونتسرات",
+        "flag_1x1": "flags/1x1/ms.svg",
+        "flag_4x3": "flags/4x3/ms.svg"
+    },
+    {
+        "name": "Morocco",
+        "flag": "🇲🇦",
+        "code": "MA",
+        "dial_code": "+212",
+        "name_ar": "المغرب",
+        "flag_1x1": "flags/1x1/ma.svg",
+        "flag_4x3": "flags/4x3/ma.svg"
+    },
+    {
+        "name": "Mozambique",
+        "flag": "🇲🇿",
+        "code": "MZ",
+        "dial_code": "+258",
+        "name_ar": "موزمبيق",
+        "flag_1x1": "flags/1x1/mz.svg",
+        "flag_4x3": "flags/4x3/mz.svg"
+    },
+    {
+        "name": "Myanmar",
+        "flag": "🇲🇲",
+        "code": "MM",
+        "dial_code": "+95",
+        "name_ar": "ميانمار",
+        "flag_1x1": "flags/1x1/mm.svg",
+        "flag_4x3": "flags/4x3/mm.svg"
+    },
+    {
+        "name": "Namibia",
+        "flag": "🇳🇦",
+        "code": "NA",
+        "dial_code": "+264",
+        "name_ar": "ناميبيا",
+        "flag_1x1": "flags/1x1/na.svg",
+        "flag_4x3": "flags/4x3/na.svg"
+    },
+    {
+        "name": "Nauru",
+        "flag": "🇳🇷",
+        "code": "NR",
+        "dial_code": "+674",
+        "name_ar": "نورو",
+        "flag_1x1": "flags/1x1/nr.svg",
+        "flag_4x3": "flags/4x3/nr.svg"
+    },
+    {
+        "name": "Nepal",
+        "flag": "🇳🇵",
+        "code": "NP",
+        "dial_code": "+977",
+        "name_ar": "نيبال",
+        "flag_1x1": "flags/1x1/np.svg",
+        "flag_4x3": "flags/4x3/np.svg"
+    },
+    {
+        "name": "Netherlands",
+        "flag": "🇳🇱",
+        "code": "NL",
+        "dial_code": "+31",
+        "name_ar": "هولندا",
+        "flag_1x1": "flags/1x1/nl.svg",
+        "flag_4x3": "flags/4x3/nl.svg"
+    },
+    {
+        "name": "New Caledonia",
+        "flag": "🇳🇨",
+        "code": "NC",
+        "dial_code": "+687",
+        "name_ar": "كاليدونيا الجديدة",
+        "flag_1x1": "flags/1x1/nc.svg",
+        "flag_4x3": "flags/4x3/nc.svg"
+    },
+    {
+        "name": "New Zealand",
+        "flag": "🇳🇿",
+        "code": "NZ",
+        "dial_code": "+64",
+        "name_ar": "نيوزيلاندا",
+        "flag_1x1": "flags/1x1/nz.svg",
+        "flag_4x3": "flags/4x3/nz.svg"
+    },
+    {
+        "name": "Nicaragua",
+        "flag": "🇳🇮",
+        "code": "NI",
+        "dial_code": "+505",
+        "name_ar": "نيكاراجوا",
+        "flag_1x1": "flags/1x1/ni.svg",
+        "flag_4x3": "flags/4x3/ni.svg"
+    },
+    {
+        "name": "Niger",
+        "flag": "🇳🇪",
+        "code": "NE",
+        "dial_code": "+227",
+        "name_ar": "النيجر",
+        "flag_1x1": "flags/1x1/ne.svg",
+        "flag_4x3": "flags/4x3/ne.svg"
+    },
+    {
+        "name": "Nigeria",
+        "flag": "🇳🇬",
+        "code": "NG",
+        "dial_code": "+234",
+        "name_ar": "نيجيريا",
+        "flag_1x1": "flags/1x1/ng.svg",
+        "flag_4x3": "flags/4x3/ng.svg"
+    },
+    {
+        "name": "Niue",
+        "flag": "🇳🇺",
+        "code": "NU",
+        "dial_code": "+683",
+        "name_ar": "نيوي",
+        "flag_1x1": "flags/1x1/nu.svg",
+        "flag_4x3": "flags/4x3/nu.svg"
+    },
+    {
+        "name": "Norfolk Island",
+        "flag": "🇳🇫",
+        "code": "NF",
+        "dial_code": "+672",
+        "name_ar": "جزيرة نورفوك",
+        "flag_1x1": "flags/1x1/nf.svg",
+        "flag_4x3": "flags/4x3/nf.svg"
+    },
+    {
+        "name": "Northern Mariana Islands",
+        "flag": "🇲🇵",
+        "code": "MP",
+        "dial_code": "+1670",
+        "name_ar": "جزر ماريانا الشمالية",
+        "flag_1x1": "flags/1x1/mp.svg",
+        "flag_4x3": "flags/4x3/mp.svg"
+    },
+    {
+        "name": "Norway",
+        "flag": "🇳🇴",
+        "code": "NO",
+        "dial_code": "+47",
+        "name_ar": "النرويج",
+        "flag_1x1": "flags/1x1/no.svg",
+        "flag_4x3": "flags/4x3/no.svg"
+    },
+    {
+        "name": "Oman",
+        "flag": "🇴🇲",
+        "code": "OM",
+        "dial_code": "+968",
+        "name_ar": "عمان",
+        "flag_1x1": "flags/1x1/om.svg",
+        "flag_4x3": "flags/4x3/om.svg"
+    },
+    {
+        "name": "Pakistan",
+        "flag": "🇵🇰",
+        "code": "PK",
+        "dial_code": "+92",
+        "name_ar": "باكستان",
+        "flag_1x1": "flags/1x1/pk.svg",
+        "flag_4x3": "flags/4x3/pk.svg"
+    },
+    {
+        "name": "Palau",
+        "flag": "🇵🇼",
+        "code": "PW",
+        "dial_code": "+680",
+        "name_ar": "بالاو",
+        "flag_1x1": "flags/1x1/pw.svg",
+        "flag_4x3": "flags/4x3/pw.svg"
+    },
+    {
+        "name": "Panama",
+        "flag": "🇵🇦",
+        "code": "PA",
+        "dial_code": "+507",
+        "name_ar": "بنما",
+        "flag_1x1": "flags/1x1/pa.svg",
+        "flag_4x3": "flags/4x3/pa.svg"
+    },
+    {
+        "name": "Papua New Guinea",
+        "flag": "🇵🇬",
+        "code": "PG",
+        "dial_code": "+675",
+        "name_ar": "بابوا غينيا الجديدة",
+        "flag_1x1": "flags/1x1/pg.svg",
+        "flag_4x3": "flags/4x3/pg.svg"
+    },
+    {
+        "name": "Paraguay",
+        "flag": "🇵🇾",
+        "code": "PY",
+        "dial_code": "+595",
+        "name_ar": "باراجواي",
+        "flag_1x1": "flags/1x1/py.svg",
+        "flag_4x3": "flags/4x3/py.svg"
+    },
+    {
+        "name": "Peru",
+        "flag": "🇵🇪",
+        "code": "PE",
+        "dial_code": "+51",
+        "name_ar": "بيرو",
+        "flag_1x1": "flags/1x1/pe.svg",
+        "flag_4x3": "flags/4x3/pe.svg"
+    },
+    {
+        "name": "Philippines",
+        "flag": "🇵🇭",
+        "code": "PH",
+        "dial_code": "+63",
+        "name_ar": "الفيلبين",
+        "flag_1x1": "flags/1x1/ph.svg",
+        "flag_4x3": "flags/4x3/ph.svg"
+    },
+    {
+        "name": "Pitcairn",
+        "flag": "🇵🇳",
+        "code": "PN",
+        "dial_code": "+64",
+        "name_ar": "بتكايرن",
+        "flag_1x1": "flags/1x1/pn.svg",
+        "flag_4x3": "flags/4x3/pn.svg"
+    },
+    {
+        "name": "Poland",
+        "flag": "🇵🇱",
+        "code": "PL",
+        "dial_code": "+48",
+        "name_ar": "بولندا",
+        "flag_1x1": "flags/1x1/pl.svg",
+        "flag_4x3": "flags/4x3/pl.svg"
+    },
+    {
+        "name": "Portugal",
+        "flag": "🇵🇹",
+        "code": "PT",
+        "dial_code": "+351",
+        "name_ar": "البرتغال",
+        "flag_1x1": "flags/1x1/pt.svg",
+        "flag_4x3": "flags/4x3/pt.svg"
+    },
+    {
+        "name": "Puerto Rico",
+        "flag": "🇵🇷",
+        "code": "PR",
+        "dial_code": "+1939",
+        "name_ar": "بورتوريكو",
+        "flag_1x1": "flags/1x1/pr.svg",
+        "flag_4x3": "flags/4x3/pr.svg"
+    },
+    {
+        "name": "Qatar",
+        "flag": "🇶🇦",
+        "code": "QA",
+        "dial_code": "+974",
+        "name_ar": "قطر",
+        "flag_1x1": "flags/1x1/qa.svg",
+        "flag_4x3": "flags/4x3/qa.svg"
+    },
+    {
+        "name": "Romania",
+        "flag": "🇷🇴",
+        "code": "RO",
+        "dial_code": "+40",
+        "name_ar": "رومانيا",
+        "flag_1x1": "flags/1x1/ro.svg",
+        "flag_4x3": "flags/4x3/ro.svg"
+    },
+    {
+        "name": "Russia",
+        "flag": "🇷🇺",
+        "code": "RU",
+        "dial_code": "+7",
+        "name_ar": "روسيا",
+        "flag_1x1": "flags/1x1/ru.svg",
+        "flag_4x3": "flags/4x3/ru.svg"
+    },
+    {
+        "name": "Rwanda",
+        "flag": "🇷🇼",
+        "code": "RW",
+        "dial_code": "+250",
+        "name_ar": "رواندا",
+        "flag_1x1": "flags/1x1/rw.svg",
+        "flag_4x3": "flags/4x3/rw.svg"
+    },
+    {
+        "name": "Saint Kitts and Nevis",
+        "flag": "🇰🇳",
+        "code": "KN",
+        "dial_code": "+1869",
+        "name_ar": "سانت كيتس ونيفيس",
+        "flag_1x1": "flags/1x1/kn.svg",
+        "flag_4x3": "flags/4x3/kn.svg"
+    },
+    {
+        "name": "Saint Lucia",
+        "flag": "🇱🇨",
+        "code": "LC",
+        "dial_code": "+1758",
+        "name_ar": "سانت لوسيا",
+        "flag_1x1": "flags/1x1/lc.svg",
+        "flag_4x3": "flags/4x3/lc.svg"
+    },
+    {
+        "name": "Saint Martin",
+        "flag": "🇲🇫",
+        "code": "MF",
+        "dial_code": "+590",
+        "name_ar": "سانت مارتين",
+        "flag_1x1": "flags/1x1/mf.svg",
+        "flag_4x3": "flags/4x3/mf.svg"
+    },
+    {
+        "name": "Saint Pierre and Miquelon",
+        "flag": "🇵🇲",
+        "code": "PM",
+        "dial_code": "+508",
+        "name_ar": "سانت بيير وميكولون",
+        "flag_1x1": "flags/1x1/pm.svg",
+        "flag_4x3": "flags/4x3/pm.svg"
+    },
+    {
+        "name": "Saint Vincent and the Grenadines",
+        "flag": "🇻🇨",
+        "code": "VC",
+        "dial_code": "+1784",
+        "name_ar": "سانت فنسنت وغرنادين",
+        "flag_1x1": "flags/1x1/vc.svg",
+        "flag_4x3": "flags/4x3/vc.svg"
+    },
+    {
+        "name": "Samoa",
+        "flag": "🇼🇸",
+        "code": "WS",
+        "dial_code": "+685",
+        "name_ar": "ساموا",
+        "flag_1x1": "flags/1x1/ws.svg",
+        "flag_4x3": "flags/4x3/ws.svg"
+    },
+    {
+        "name": "San Marino",
+        "flag": "🇸🇲",
+        "code": "SM",
+        "dial_code": "+378",
+        "name_ar": "سان مارينو",
+        "flag_1x1": "flags/1x1/sm.svg",
+        "flag_4x3": "flags/4x3/sm.svg"
+    },
+    {
+        "name": "Sao Tome and Principe",
+        "flag": "🇸🇹",
+        "code": "ST",
+        "dial_code": "+239",
+        "name_ar": "ساو تومي وبرينسيبي",
+        "flag_1x1": "flags/1x1/st.svg",
+        "flag_4x3": "flags/4x3/st.svg"
+    },
+    {
+        "name": "Saudi Arabia",
+        "flag": "🇸🇦",
+        "code": "SA",
+        "dial_code": "+966",
+        "name_ar": "المملكة العربية السعودية",
+        "flag_1x1": "flags/1x1/sa.svg",
+        "flag_4x3": "flags/4x3/sa.svg"
+    },
+    {
+        "name": "Senegal",
+        "flag": "🇸🇳",
+        "code": "SN",
+        "dial_code": "+221",
+        "name_ar": "السنغال",
+        "flag_1x1": "flags/1x1/sn.svg",
+        "flag_4x3": "flags/4x3/sn.svg"
+    },
+    {
+        "name": "Serbia",
+        "flag": "🇷🇸",
+        "code": "RS",
+        "dial_code": "+381",
+        "name_ar": "صربيا",
+        "flag_1x1": "flags/1x1/rs.svg",
+        "flag_4x3": "flags/4x3/rs.svg"
+    },
+    {
+        "name": "Seychelles",
+        "flag": "🇸🇨",
+        "code": "SC",
+        "dial_code": "+248",
+        "name_ar": "سيشل",
+        "flag_1x1": "flags/1x1/sc.svg",
+        "flag_4x3": "flags/4x3/sc.svg"
+    },
+    {
+        "name": "Sierra Leone",
+        "flag": "🇸🇱",
+        "code": "SL",
+        "dial_code": "+232",
+        "name_ar": "سيراليون",
+        "flag_1x1": "flags/1x1/sl.svg",
+        "flag_4x3": "flags/4x3/sl.svg"
+    },
+    {
+        "name": "Singapore",
+        "flag": "🇸🇬",
+        "code": "SG",
+        "dial_code": "+65",
+        "name_ar": "سنغافورة",
+        "flag_1x1": "flags/1x1/sg.svg",
+        "flag_4x3": "flags/4x3/sg.svg"
+    },
+    {
+        "name": "Slovakia",
+        "flag": "🇸🇰",
+        "code": "SK",
+        "dial_code": "+421",
+        "name_ar": "سلوفاكيا",
+        "flag_1x1": "flags/1x1/sk.svg",
+        "flag_4x3": "flags/4x3/sk.svg"
+    },
+    {
+        "name": "Slovenia",
+        "flag": "🇸🇮",
+        "code": "SI",
+        "dial_code": "+386",
+        "name_ar": "سلوفينيا",
+        "flag_1x1": "flags/1x1/si.svg",
+        "flag_4x3": "flags/4x3/si.svg"
+    },
+    {
+        "name": "Solomon Islands",
+        "flag": "🇸🇧",
+        "code": "SB",
+        "dial_code": "+677",
+        "name_ar": "جزر سليمان",
+        "flag_1x1": "flags/1x1/sb.svg",
+        "flag_4x3": "flags/4x3/sb.svg"
+    },
+    {
+        "name": "Somalia",
+        "flag": "🇸🇴",
+        "code": "SO",
+        "dial_code": "+252",
+        "name_ar": "الصومال",
+        "flag_1x1": "flags/1x1/so.svg",
+        "flag_4x3": "flags/4x3/so.svg"
+    },
+    {
+        "name": "South Africa",
+        "flag": "🇿🇦",
+        "code": "ZA",
+        "dial_code": "+27",
+        "name_ar": "جمهورية جنوب افريقيا",
+        "flag_1x1": "flags/1x1/za.svg",
+        "flag_4x3": "flags/4x3/za.svg"
+    },
+    {
+        "name": "South Sudan",
+        "flag": "🇸🇸",
+        "code": "SS",
+        "dial_code": "+211",
+        "name_ar": "جنوب السودان",
+        "flag_1x1": "flags/1x1/ss.svg",
+        "flag_4x3": "flags/4x3/ss.svg"
+    },
+    {
+        "name": "South Georgia and the South Sandwich Islands",
+        "flag": "🇬🇸",
+        "code": "GS",
+        "dial_code": "+500",
+        "name_ar": "جورجيا الجنوبية وجزر ساندويتش الجنوبية",
+        "flag_1x1": "flags/1x1/gs.svg",
+        "flag_4x3": "flags/4x3/gs.svg"
+    },
+    {
+        "name": "Spain",
+        "flag": "🇪🇸",
+        "code": "ES",
+        "dial_code": "+34",
+        "name_ar": "أسبانيا",
+        "flag_1x1": "flags/1x1/es.svg",
+        "flag_4x3": "flags/4x3/es.svg"
+    },
+    {
+        "name": "Sri Lanka",
+        "flag": "🇱🇰",
+        "code": "LK",
+        "dial_code": "+94",
+        "name_ar": "سريلانكا",
+        "flag_1x1": "flags/1x1/lk.svg",
+        "flag_4x3": "flags/4x3/lk.svg"
+    },
+    {
+        "name": "Sudan",
+        "flag": "🇸🇩",
+        "code": "SD",
+        "dial_code": "+249",
+        "name_ar": "السودان",
+        "flag_1x1": "flags/1x1/sd.svg",
+        "flag_4x3": "flags/4x3/sd.svg"
+    },
+    {
+        "name": "Suriname",
+        "flag": "🇸🇷",
+        "code": "SR",
+        "dial_code": "+597",
+        "name_ar": "سورينام",
+        "flag_1x1": "flags/1x1/sr.svg",
+        "flag_4x3": "flags/4x3/sr.svg"
+    },
+    {
+        "name": "Svalbard and Jan Mayen",
+        "flag": "🇸🇯",
+        "code": "SJ",
+        "dial_code": "+47",
+        "name_ar": "سفالبارد وجان مايان",
+        "flag_1x1": "flags/1x1/sj.svg",
+        "flag_4x3": "flags/4x3/sj.svg"
+    },
+    {
+        "name": "Swaziland",
+        "flag": "🇸🇿",
+        "code": "SZ",
+        "dial_code": "+268",
+        "name_ar": "سوازيلاند",
+        "flag_1x1": "flags/1x1/sz.svg",
+        "flag_4x3": "flags/4x3/sz.svg"
+    },
+    {
+        "name": "Sweden",
+        "flag": "🇸🇪",
+        "code": "SE",
+        "dial_code": "+46",
+        "name_ar": "السويد",
+        "flag_1x1": "flags/1x1/se.svg",
+        "flag_4x3": "flags/4x3/se.svg"
+    },
+    {
+        "name": "Switzerland",
+        "flag": "🇨🇭",
+        "code": "CH",
+        "dial_code": "+41",
+        "name_ar": "سويسرا",
+        "flag_1x1": "flags/1x1/ch.svg",
+        "flag_4x3": "flags/4x3/ch.svg"
+    },
+    {
+        "name": "Syrian Arab Republic",
+        "flag": "🇸🇾",
+        "code": "SY",
+        "dial_code": "+963",
+        "name_ar": "سوريا",
+        "flag_1x1": "flags/1x1/sy.svg",
+        "flag_4x3": "flags/4x3/sy.svg"
+    },
+    {
+        "name": "Taiwan",
+        "flag": "🇹🇼",
+        "code": "TW",
+        "dial_code": "+886",
+        "name_ar": "تايوان",
+        "flag_1x1": "flags/1x1/tw.svg",
+        "flag_4x3": "flags/4x3/tw.svg"
+    },
+    {
+        "name": "Tajikistan",
+        "flag": "🇹🇯",
+        "code": "TJ",
+        "dial_code": "+992",
+        "name_ar": "طاجكستان",
+        "flag_1x1": "flags/1x1/tj.svg",
+        "flag_4x3": "flags/4x3/tj.svg"
+    },
+    {
+        "name": "Thailand",
+        "flag": "🇹🇭",
+        "code": "TH",
+        "dial_code": "+66",
+        "name_ar": "تايلند",
+        "flag_1x1": "flags/1x1/th.svg",
+        "flag_4x3": "flags/4x3/th.svg"
+    },
+    {
+        "name": "Timor-Leste",
+        "flag": "🇹🇱",
+        "code": "TL",
+        "dial_code": "+670",
+        "name_ar": "تيمور الشرقية",
+        "flag_1x1": "flags/1x1/tl.svg",
+        "flag_4x3": "flags/4x3/tl.svg"
+    },
+    {
+        "name": "Togo",
+        "flag": "🇹🇬",
+        "code": "TG",
+        "dial_code": "+228",
+        "name_ar": "توجو",
+        "flag_1x1": "flags/1x1/tg.svg",
+        "flag_4x3": "flags/4x3/tg.svg"
+    },
+    {
+        "name": "Tokelau",
+        "flag": "🇹🇰",
+        "code": "TK",
+        "dial_code": "+690",
+        "name_ar": "توكيلو",
+        "flag_1x1": "flags/1x1/tk.svg",
+        "flag_4x3": "flags/4x3/tk.svg"
+    },
+    {
+        "name": "Tonga",
+        "flag": "🇹🇴",
+        "code": "TO",
+        "dial_code": "+676",
+        "name_ar": "تونجا",
+        "flag_1x1": "flags/1x1/to.svg",
+        "flag_4x3": "flags/4x3/to.svg"
+    },
+    {
+        "name": "Trinidad and Tobago",
+        "flag": "🇹🇹",
+        "code": "TT",
+        "dial_code": "+1868",
+        "name_ar": "ترينيداد وتوباغو",
+        "flag_1x1": "flags/1x1/tt.svg",
+        "flag_4x3": "flags/4x3/tt.svg"
+    },
+    {
+        "name": "Tunisia",
+        "flag": "🇹🇳",
+        "code": "TN",
+        "dial_code": "+216",
+        "name_ar": "تونس",
+        "flag_1x1": "flags/1x1/tn.svg",
+        "flag_4x3": "flags/4x3/tn.svg"
+    },
+    {
+        "name": "Turkey",
+        "flag": "🇹🇷",
+        "code": "TR",
+        "dial_code": "+90",
+        "name_ar": "تركيا",
+        "flag_1x1": "flags/1x1/tr.svg",
+        "flag_4x3": "flags/4x3/tr.svg"
+    },
+    {
+        "name": "Turkmenistan",
+        "flag": "🇹🇲",
+        "code": "TM",
+        "dial_code": "+993",
+        "name_ar": "تركمانستان",
+        "flag_1x1": "flags/1x1/tm.svg",
+        "flag_4x3": "flags/4x3/tm.svg"
+    },
+    {
+        "name": "Turks and Caicos Islands",
+        "flag": "🇹🇨",
+        "code": "TC",
+        "dial_code": "+1649",
+        "name_ar": "جزر الترك وجايكوس",
+        "flag_1x1": "flags/1x1/tc.svg",
+        "flag_4x3": "flags/4x3/tc.svg"
+    },
+    {
+        "name": "Tuvalu",
+        "flag": "🇹🇻",
+        "code": "TV",
+        "dial_code": "+688",
+        "name_ar": "توفالو",
+        "flag_1x1": "flags/1x1/tv.svg",
+        "flag_4x3": "flags/4x3/tv.svg"
+    },
+    {
+        "name": "Uganda",
+        "flag": "🇺🇬",
+        "code": "UG",
+        "dial_code": "+256",
+        "name_ar": "أوغندا",
+        "flag_1x1": "flags/1x1/ug.svg",
+        "flag_4x3": "flags/4x3/ug.svg"
+    },
+    {
+        "name": "Ukraine",
+        "flag": "🇺🇦",
+        "code": "UA",
+        "dial_code": "+380",
+        "name_ar": "أوكرانيا",
+        "flag_1x1": "flags/1x1/ua.svg",
+        "flag_4x3": "flags/4x3/ua.svg"
+    },
+    {
+        "name": "United Arab Emirates",
+        "flag": "🇦🇪",
+        "code": "AE",
+        "dial_code": "+971",
+        "name_ar": "الامارات العربية المتحدة",
+        "flag_1x1": "flags/1x1/ae.svg",
+        "flag_4x3": "flags/4x3/ae.svg"
+    },
+    {
+        "name": "United Kingdom",
+        "flag": "🇬🇧",
+        "code": "GB",
+        "dial_code": "+44",
+        "name_ar": "المملكة المتحدة",
+        "flag_1x1": "flags/1x1/gb.svg",
+        "flag_4x3": "flags/4x3/gb.svg"
+    },
+    {
+        "name": "Uruguay",
+        "flag": "🇺🇾",
+        "code": "UY",
+        "dial_code": "+598",
+        "name_ar": "أورجواي",
+        "flag_1x1": "flags/1x1/uy.svg",
+        "flag_4x3": "flags/4x3/uy.svg"
+    },
+    {
+        "name": "Uzbekistan",
+        "flag": "🇺🇿",
+        "code": "UZ",
+        "dial_code": "+998",
+        "name_ar": "أوزبكستان",
+        "flag_1x1": "flags/1x1/uz.svg",
+        "flag_4x3": "flags/4x3/uz.svg"
+    },
+    {
+        "name": "Vanuatu",
+        "flag": "🇻🇺",
+        "code": "VU",
+        "dial_code": "+678",
+        "name_ar": "فانواتو",
+        "flag_1x1": "flags/1x1/vu.svg",
+        "flag_4x3": "flags/4x3/vu.svg"
+    },
+    {
+        "name": "Vietnam",
+        "flag": "🇻🇳",
+        "code": "VN",
+        "dial_code": "+84",
+        "name_ar": "فيتنام",
+        "flag_1x1": "flags/1x1/vn.svg",
+        "flag_4x3": "flags/4x3/vn.svg"
+    },
+    {
+        "name": "Wallis and Futuna",
+        "flag": "🇼🇫",
+        "code": "WF",
+        "dial_code": "+681",
+        "name_ar": "جزر والس وفوتونا",
+        "flag_1x1": "flags/1x1/wf.svg",
+        "flag_4x3": "flags/4x3/wf.svg"
+    },
+    {
+        "name": "Yemen",
+        "flag": "🇾🇪",
+        "code": "YE",
+        "dial_code": "+967",
+        "name_ar": "اليمن",
+        "flag_1x1": "flags/1x1/ye.svg",
+        "flag_4x3": "flags/4x3/ye.svg"
+    },
+    {
+        "name": "Zambia",
+        "flag": "🇿🇲",
+        "code": "ZM",
+        "dial_code": "+260",
+        "name_ar": "زامبيا",
+        "flag_1x1": "flags/1x1/zm.svg",
+        "flag_4x3": "flags/4x3/zm.svg"
+    },
+    {
+        "name": "Zimbabwe",
+        "flag": "🇿🇼",
+        "code": "ZW",
+        "dial_code": "+263",
+        "name_ar": "زيمبابوي",
+        "flag_1x1": "flags/1x1/zw.svg",
+        "flag_4x3": "flags/4x3/zw.svg"
+    }
+]
+
+//countryFlag
+//countrydrowpdown
+
+let countrydrowpdown =``;
+
+countryFlag.forEach(function(country){
+//console.log(country)
+countrydrowpdown +=`<option value="${country.dial_code}" data-img_src="${country.flag_1x1}">${country.name} ${country.dial_code}</option>`;
+})
+
+$(".countrydrowpdown").html(countrydrowpdown)
+
+    function custom_template(obj){
+            var data = $(obj.element).data();
+            var text = $(obj.element).text();
+            if(data && data['img_src']){
+                img_src = data['img_src'];
+                template = $("<img src=\"" + img_src + "\" style=\"width:20px;padding-right:5px\"/>" + text + "</div>");
+                return template;
+            }
+        }
+    var options = {
+        'templateSelection': custom_template,
+        'templateResult': custom_template,
+    }
+    $('.js-example-basic-single').select2(options);
+    $('.select2-container--default .select2-selection--single').css({'height': '35px'});
+
+$(".js-example-basic-single").on('change',function(){
+let countrycode = $(".js-example-basic-single").val()
+$(".countrycode").html(countrycode)
+console.log(countrycode)
+})
+
+
+</script>
+  </body>
+</html>
